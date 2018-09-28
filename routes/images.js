@@ -22,8 +22,7 @@ router.get('/image/:id', (req, res) => {
 });
 
 router.post('/image', (req, res) => {
-  const newImage = req.body;
-  db.images.save(newImage, (err, image) => {
+  db.images.save(req.body, (err, image) => {
     if (err) {
       res.send(err);
     }
@@ -41,8 +40,7 @@ router.delete('/image/:id', (req, res) => {
 });
 
 router.put('/image/:id', (req, res) => {
-  const newImageData = req.body;
-  db.images.update({_id: mongojs.ObjectId(req.params.id)}, newImageData, {}, (err, image) => {
+  db.images.update({_id: mongojs.ObjectId(req.params.id)}, req.body, {}, (err, image) => {
     if (err) {
       res.send(err);
     }

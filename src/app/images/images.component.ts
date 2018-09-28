@@ -14,12 +14,16 @@ export class ImagesComponent implements OnInit {
     // go to image edit view
   }
 
-  deleteImage = () => {}
+  deleteImage = id => {
+    this.imagesService.deleteImage(id).subscribe(response => {
+      this.images = this.images.filter(img => img._id != id);
+    });
+  }
 
-  createNewImage = event => {
-    event.preventDefault();
-    this.images.push(this.newImage);
-    this.imagesService.createImage(this.newImage)
+  createNewImage = () => {
+    this.imagesService.createImage(this.newImage).subscribe(response => {
+      this.images.push(response);
+    });
     this.newImage = {name: '', description: '', src: ''};
   }
 

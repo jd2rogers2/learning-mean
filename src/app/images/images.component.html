@@ -1,7 +1,7 @@
 <h4>images index</h4>
 <mat-card>
   <p>create new image</p>
-  <form name="imageForm" (ngSubmit)="createNewImage($event)" #f="ngForm" novalidate>
+  <form name="imageForm" (ngSubmit)="createNewImage()" #f="ngForm" novalidate>
     <mat-form-field>
       image name<input matInput type="text" [(ngModel)]="newImage.name" name="name" #name="ngModel" />
     </mat-form-field>
@@ -25,7 +25,7 @@
     <li *ngFor="let image of images" style="list-style: none;">
       <img style="height:50px; width: 50px;" src={{image.src}} alt={{image.description}} />
       <button (click)="goToImage()" mat-raised-button color="primary">go to {{image.name}} img</button>
-      <button (click)="deleteImage()" mat-raised-button color="warn">delete</button>
+      <button (click)="deleteImage(image._id)" mat-raised-button color="warn">delete</button>
     </li>
   </mat-card>
 </ul>

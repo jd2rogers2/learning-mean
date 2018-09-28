@@ -13,6 +13,10 @@ export class ImagesService {
   createImage = image => {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json')
-    this.http.post('http://localhost:3000/api/image', JSON.stringify(image), {headers});
+    return this.http.post('http://localhost:3000/api/image', JSON.stringify(image), {headers}).map(res => res.json());
+  }
+
+  deleteImage = id => {
+    return this.http.delete('http://localhost:3000/api/image/' + id).map(res => res.json());
   }
 }
