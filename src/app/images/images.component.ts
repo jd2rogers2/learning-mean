@@ -16,16 +16,18 @@ export class ImagesComponent implements OnInit {
 
   deleteImage = () => {}
 
-  createNewImage = () => {
+  createNewImage = event => {
+    event.preventDefault();
     this.images.push(this.newImage);
+    this.imagesService.createImage(this.newImage)
     this.newImage = {name: '', description: '', src: ''};
   }
 
   constructor(public imagesService: ImagesService) {}
 
   ngOnInit() {
-    this.imagesService.getImages().subscribe(res => {
-      this.images = res.json();
+    this.imagesService.getImages().subscribe(response => {
+      this.images = response;
     });
   }
 

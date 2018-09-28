@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ImagesComponent } from './images/images.component';
 
 @Component({
   selector: 'app-root',
